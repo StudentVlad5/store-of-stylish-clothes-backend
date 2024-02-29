@@ -1,7 +1,7 @@
-const dataFilterObj = obj => {
+const dataFilterObj = (obj) => {
   const newObj = {};
   const arr = Object.keys(obj);
-  arr.map(item => {
+  arr.map((item) => {
     if (obj[item]) {
       newObj[item] = obj[item];
     }

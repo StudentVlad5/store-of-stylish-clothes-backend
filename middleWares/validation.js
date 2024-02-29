@@ -11,7 +11,6 @@ const validation = (schema) => {
         : JSON.parse(JSON.stringify(req.body));
     console.log("dataValidate: ", dataValidate);
     const { error } = schema.validate(dataValidate);
-    console.log("validation ~ error:", error);
     if (error) {
       throw new ValidationError(error.message);
     }

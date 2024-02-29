@@ -1,23 +1,31 @@
 const { Users } = require("../../models");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 const {
   dataFilter,
+  userFullField,
+  userFieldReceivedFromFront,
   requiredSignUpFields,
   checkObjByList,
   ValidationError,
   DuplicateEmailError,
 } = require("../../helpers");
 
+const { SECRET_KEY } = process.env;
+
 const signup = async (req, res, next) => {
-  console.log("req.body", req.body);
   const isValidInData = checkObjByList(req.body, requiredSignUpFields);
   if (!isValidInData) {
     throw new ValidationError("Bad request, invalid data");
   }
-  const userDataCreate = dataFilter(req.body, requiredSignUpFields);
-  console.log("userDataCreate", userDataCreate);
-  userDataCreate.packages = [];
-  userDataCreate.packages.push(req.body.packages);
-  console.log(userDataCreate);
+
+  const userDataCreate = dataFilter(req.body, userFieldReceivedFromFront);
+
+  const hashPassword = bcrypt.hashSync(
+    req.body.password,
+    bcrypt.genSaltSync(10)
+  );
+  userDataCreate.password = hashPassword;
 
   const isFoundUser = await Users.findOne(
     { email: userDataCreate.email },
@@ -30,7 +38,19 @@ const signup = async (req, res, next) => {
   }
 
   const user = await Users.create(userDataCreate);
-  res.status(201).json({ message: "Create success" });
+  const payload = { id: user._id };
+  const authToken = jwt.sign(payload, SECRET_KEY, { expiresIn: "14d" });
+  const result = await Users.findByIdAndUpdate(
+    user._id,
+    { authToken },
+    { new: true }
+  );
+
+  const newUser = dataFilter(result, userFullField);
+
+  res
+    .status(201)
+    .json({ code: "201", message: "user create", data: newUser });
 };
 
 module.exports = signup;

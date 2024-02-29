@@ -5,6 +5,9 @@ const logout = require('./logout');
 const update = require('./update');
 const forgotPassword = require('./forgotPassword');
 const changePassword = require('./changepassword');
+const addFavorite = require('./addfavorite');
+const deleteFavorite = require('./deletefavorite');
+const getFavorites = require('./getFavorites');
 
 module.exports = {
   signup,
@@ -14,4 +17,7 @@ module.exports = {
   update,
   forgotPassword,
   changePassword,
+  addFavorite,
+  deleteFavorite,
+  getFavorites,
 };

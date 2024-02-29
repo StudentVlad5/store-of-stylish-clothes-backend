@@ -1,26 +1,27 @@
-const cloudinary = require('cloudinary').v2;
-const { CloudinaryStorage } = require('multer-storage-cloudinary');
-const multer = require('multer');
+const multer = require("multer");
+const path = require("path");
+const FILE_DIR = path.join(__dirname, "../images/", "avatars");
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_NAME,
-  api_key: process.env.CLOUDINARY_KEY,
-  api_secret: process.env.CLOUDINARY_SECRET,
+const multerConfig = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, FILE_DIR);
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + file.originalname);
+  },
 });
 
-const storage = new CloudinaryStorage({
-  cloudinary: cloudinary,
-  params: {
-    folder: 'bloomskill_specialist',
-    resource_type: 'auto',
-    allowedFormats: ['jpg', 'png', 'jpeg', 'webp', 'gif'],
-  },
-  filename: (req, res, cb) => {
-    cb(null, res.originalname);
-  },
-  transformation: [{ width: 500, height: 500, crop: 'limit' }],
-});
+const fileFilter = (req, file, cb) => {
+  if (
+    file.mimetype === "image/png" ||
+    file.mimetype === "image/jpg" ||
+    file.mimetype === "image/jpeg"
+  ) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+const upload = multer({ storage: multerConfig, fileFilter: fileFilter });
 
-const uploadCloud = multer({ storage });
-
-module.exports = uploadCloud;
+module.exports = { upload };

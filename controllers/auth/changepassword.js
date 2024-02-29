@@ -1,13 +1,13 @@
-const { ValidationError } = require("../../helpers");
-const bcrypt = require("bcryptjs");
-const nodemailer = require("nodemailer");
+const { ValidationError } = require('../../helpers');
+const bcrypt = require('bcryptjs');
+const nodemailer = require('nodemailer');
 
-const { Users } = require("../../models");
+const { Users } = require('../../models');
 const {
   userMainField,
   userFieldReceivedFromFront,
   dataFilter,
-} = require("../../helpers");
+} = require('../../helpers');
 
 const changePassword = async (req, res, next) => {
   try {
@@ -20,11 +20,11 @@ const changePassword = async (req, res, next) => {
     const user = await Users.findOneAndUpdate(
       { email: newData.email },
       { $set: { password: newData.password } },
-      { returnDocument: "after" }
+      { returnDocument: 'after' }
     );
-    console.log("user", user);
+    console.log('user', user);
     const transporter = nodemailer.createTransport({
-      host: "smtp.ukr.net",
+      host: 'smtp.ukr.net',
       port: 465,
       secure: true,
       auth: {
@@ -33,21 +33,21 @@ const changePassword = async (req, res, next) => {
       },
     });
 
-    const from = "SoFi Finance Club <vlad_np@ukr.net>";
+    const from = 'Plant Shop Service <vlad_np@ukr.net>';
     const to = user.email;
 
     transporter.sendMail(
       {
         from,
         to,
-        subject: "Change password",
-        html: `<h1>Hello</h1><p>Hello. Please note that you have changed the access password to the SoFi Finance Club</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your SoFi Finance Club support</p>`,
+        subject: 'Change password',
+        html: `<h1>Hello</h1><p>Hello. Please note that you have changed the access password to the Shop service</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Indoor Plants service support</p>`,
       },
       (err, data) => {
         if (err) {
-          console.error("Error sending:", err);
+          console.error('Error sending:', err);
         } else {
-          console.log("Letter sent");
+          console.log('Letter sent');
         }
       }
     );

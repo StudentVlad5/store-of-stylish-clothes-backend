@@ -2,32 +2,23 @@ const {
   Users,
   userValidationSchema,
   userUpdateValidationSchema,
-  userEditValidationSchema,
-  userRegistationSchema,
-} = require('./user');
-const { Categories, categoriesValidationSchema } = require('./category');
-const { Events, eventsValidationSchema } = require('./event');
-const { ActiveEvents, activeEventsValidationSchema } = require('./activeEvent');
-const { Specialists, specialistValidationSchema } = require('./specialist');
-const { Orders, ordersValidationSchema } = require('./order');
-const { Messages, messagesValidationSchema } = require('./message');
+} = require("./users");
+const Catalog = require("./catalog");
+const DepartmentsNP = require("./departmentsNP");
+const CitiesNP = require("./citiesNP");
+const Care = require("./care");
+const Basket = require("./basket");
+const { Orders, orderValidationSchema } = require("./order");
 
 module.exports = {
   Users,
   userValidationSchema,
   userUpdateValidationSchema,
-  userEditValidationSchema,
-  Categories,
-  categoriesValidationSchema,
-  Events,
-  eventsValidationSchema,
-  userRegistationSchema,
-  Specialists,
-  specialistValidationSchema,
-  ActiveEvents,
-  activeEventsValidationSchema,
+  Catalog,
+  DepartmentsNP,
+  CitiesNP,
+  Care,
   Orders,
-  ordersValidationSchema,
-  Messages,
-  messagesValidationSchema,
+  orderValidationSchema,
+  Basket,
 };

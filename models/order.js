@@ -1,56 +1,92 @@
-const Joi = require("joi");
-const mongoose = require("mongoose");
-require("mongoose-type-email");
+const Joi = require('joi');
+const mongoose = require('mongoose');
+require('mongoose-type-email');
+require('mongoose-type-url');
 
-const ordersValidationSchema = Joi.object({
-  eventId: Joi.string().min(3).max(32).required(),
-  activeEventID: Joi.string().min(3).max(32).required(),
-  date: Joi.date().required(),
-  time: Joi.string(),
-  userName: Joi.string().min(3).max(32).required(),
-  userEmail: Joi.string().email().required(),
-  bookingSeats: Joi.number().required(),
-  priceTotal: Joi.number().required(),
-  status: Joi.string().min(3).max(32).required(),
+const orderValidationSchema = Joi.object({
+  user_id: Joi.string().min(3).max(32).required(),
+  basket: Joi.array().required(),
+  totalAmount: Joi.string().min(1).max(32).required(),
+  totalDiscount: Joi.string().min(1).max(32).required(),
+  totalPayment: Joi.string().min(1).max(32).required(),
+  delivery: Joi.array().required(),
+  metodPayment: Joi.array().required(),
 });
 
-const ordersSchema = new mongoose.Schema(
+const OrdersSchema = new mongoose.Schema(
   {
-    eventId: {
+    user_id: {
       type: String,
-      required: [true, "Set eventId"],
+      default: 'not avtorization',
     },
-    activeEventID: {
-      type: String,
-      required: [true, "Set activeEventID"],
+    basket: {
+      type: Object,
+      required: [true, 'Set basket order'],
+      default: {},
     },
-    date: {
-      type: Date,
-      required: [true, "Set date"],
-    },
-    time: {
-      type: String,
-    },
-    userName: {
-      type: String,
-      required: [true, "Set userName"],
-    },
-    userEmail: {
-      type: mongoose.SchemaTypes.Email,
-      required: [true, "Set email user"],
-    },
-    bookingSeats: {
+    totalAmount: {
       type: Number,
-      required: [true, "Set bookingSeats"],
+      required: [true, 'Set totalAmount'],
     },
-    priceTotal: {
+    totalDiscount: {
       type: Number,
-      required: [true, "Set priceTotal"],
+      required: [true, 'Set totalDiscount'],
     },
-    status: {
+    totalPayment: {
+      type: Number,
+      required: [true, 'Set totalPayment'],
+    },
+    currency: {
       type: String,
-      default: "new",
-      enum: ["new", "accept", "reject"],
+      required: [true, 'Set totalPayment'],
+    },
+    deliveryOrder: {
+      type: Object,
+      required: [true, 'Set delivery'],
+      default: {},
+    },
+    selectedPaymentOption: {
+      type: String,
+      required: [true, 'Set methodPayment'],
+    },
+    name: {
+      type: String,
+      required: [true, 'Set userName'],
+    },
+    company: {
+      type: String,
+      // required: [true, "Set company"],
+    },
+    city: {
+      type: String,
+      required: [true, 'Set city'],
+    },
+    address1: {
+      type: String,
+      required: [true, 'Set address1'],
+    },
+    address2: {
+      type: String,
+      // required: [true, "Set address2"],
+    },
+    state: {
+      type: String,
+      required: [true, 'Set state'],
+    },
+    zipCode: {
+      type: String,
+      required: [true, 'Set zipCode'],
+    },
+    phone: {
+      type: String,
+      required: [true, 'Set phone'],
+    },
+    email: {
+      type: String,
+      required: [true, 'Set email'],
+    },
+    comments: {
+      type: String,
     },
   },
   {
@@ -59,6 +95,6 @@ const ordersSchema = new mongoose.Schema(
   }
 );
 
-const Orders = mongoose.model("orders", ordersSchema);
+const Orders = mongoose.model('order', OrdersSchema);
 
-module.exports = { Orders, ordersValidationSchema };
+module.exports = { Orders, orderValidationSchema };

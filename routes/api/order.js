@@ -1,13 +1,11 @@
 const express = require("express");
-const { orders } = require("../../controllers");
+const { order } = require("../../controllers");
 const ctrlWrapper = require("../../middleWares/ctrlWrapper");
 
-const { createOrder, get, updateOrder, deleteOrder } = orders;
+const { createOrder, getById } = order;
 const router = express.Router();
 
+router.get("/:id/", ctrlWrapper(getById));
 router.post("/", ctrlWrapper(createOrder));
-router.post("/:id", ctrlWrapper(updateOrder));
-router.get("/", ctrlWrapper(get));
-router.delete("/:id",  ctrlWrapper(deleteOrder));
 
-module.exports = routerOrders = router;
+module.exports = routerOrder = router;

@@ -1,19 +1,18 @@
-const auth = require('./auth');
-const users = require('./users');
-const events = require('./events');
-const active_events = require('./active_events');
-const categories = require('./categories');
-const specialists = require('./specialists');
-const orders = require('./orders');
-const messages = require('./messages');
+const auth = require("./auth");
+// const user = require("./user");
+const catalog = require("./catalog");
+const cities = require("./cities");
+const departments = require("./departments");
+const care = require("./care");
+const order = require("./order");
+const basket = require("./basket");
 
 module.exports = {
   auth,
-  users,
-  events,
-  active_events,
-  categories,
-  specialists,
-  orders,
-  messages,
+  catalog,
+  cities,
+  departments,
+  care,
+  order,
+  basket,
 };
