@@ -10,11 +10,10 @@ const {
   // routerOwner,
   // routerMessage,
   // routerAdmin,
-  routerDevelopers,
   routerCatalog,
-  routerSities,
-  routerCare,
-  routerOrder,
+  // routerSities,
+  // routerCare,
+  // routerOrder,
 } = require("./routes/api");
 
 const app = express();

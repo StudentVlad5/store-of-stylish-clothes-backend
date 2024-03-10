@@ -1,11 +1,19 @@
 const { Schema, model } = require('mongoose');
 
 const catalogSchema = new Schema({
-  article: {
-    type: Number,
+  uuid: {
+    type: String,
     required: true,
   },
-  name: {
+  title: {
+    type: String,
+    required: true,
+  },
+  title_ua: {
+    type: String,
+    required: true,
+  },
+  article: {
     type: String,
     required: true,
   },
@@ -13,97 +21,38 @@ const catalogSchema = new Schema({
     type: String,
     required: true,
   },
-  totalQuantity: {
-    type: Number,
-    required: true,
-  },
-  oldPrice: {
-    type: Number,
-    required: true,
-  },
-  currentPrice: {
-    type: Number,
-    required: true,
-  },
-  discount: {
-    type: Number,
-    required: true,
-  },
-  currency: {
+  categories: {
     type: String,
     required: true,
   },
-  options: {
-    type: [
-      {
-        title: String,
-        oldPrice: Number,
-        currentPrice: Number,
-        discount: Number,
-        total: Number,
-      },
-    ],
-    default: [],
+  mainImage: {
+    type: String,
     required: true,
   },
   images: {
-    type: Array,
-    default: [],
-    // required: true,
+    type: String,
+    required: true,
   },
-  rating: {
+  price: {
     type: Number,
     required: true,
-    default: 0,
   },
-  category: {
+  creation_datetime: {
+    type: String,
+    default: '',
+    // required: true,
+  },
+  sizes: {
     type: String,
     required: true,
-    default: 'Other',
   },
-  typeOfPlants: {
+  size_chart_ru: {
     type: String,
-    // required: true,
+    required: true,
   },
-  zone: {
-    type: Array,
-    // required: true,
-  },
-  light: {
+  size_chart_ua: {
     type: String,
-    // required: true,
-  },
-  petFriendly: {
-    type: String,
-    // required: true,
-  },
-  maintenance: {
-    type: String,
-    // required: true,
-  },
-  potSize: {
-    type: {
-      size: Number,
-      unit: String,
-    },
-    default: {},
-    // required: true,
-  },
-  waterSchedule: {
-    type: String,
-    // required: true,
-  },
-  hardToKill: {
-    type: String,
-    // required: true,
-  },
-  rare: {
-    type: String,
-    // required: true,
-  },
-  size: {
-    type: String,
-    // required: true,
+    required: true,
   },
 });
 

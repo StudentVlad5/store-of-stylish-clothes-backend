@@ -1,2 +1,2 @@
-# indoor-plants-backend
-backend for store of indoor plants
+# stylish-clothes-backend
+backend for store of stylish clothes 
