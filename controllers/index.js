@@ -1,6 +1,7 @@
 const auth = require("./auth");
 // const user = require("./user");
 const catalog = require("./catalog");
+const category = require("./category");
 const cities = require("./cities");
 const departments = require("./departments");
 const care = require("./care");
@@ -15,4 +16,5 @@ module.exports = {
   care,
   order,
   basket,
+  category
 };

@@ -37,6 +37,7 @@ app.use("/api/auth", routerAuth);
 app.use("/api/cities", routerSities);
 app.use("/api/departments", routerDepartments);
 app.use("/api/catalog", routerCatalog);
+app.use("/api/category", routerCategory);
 app.use("/api/care", routerCare);
 app.use("/api/order", routerOrder);
 app.use("/api/basket", routerBasket);

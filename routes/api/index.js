@@ -1,5 +1,6 @@
 const routerAuth = require("./auth");
 const routerCatalog = require("./catalog");
+const routerCategory = require("./category");
 const routerSities = require("./cities");
 const routerDepartments = require("./departments");
 const routerCare = require("./care");
@@ -14,4 +15,5 @@ module.exports = {
   routerCare,
   routerOrder,
   routerBasket,
+  routerCategory
 };
