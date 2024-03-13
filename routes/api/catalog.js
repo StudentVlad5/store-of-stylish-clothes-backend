@@ -2,7 +2,7 @@ const express = require('express');
 const { catalog } = require('../../controllers');
 const ctrlWrapper = require('../../middleWares/ctrlWrapper');
 
-const { getByFilter, getCatalogById } = catalog;
+const { get, getByFilter, getCatalogById } = catalog;
 const router = express.Router();
 
 // router.get("/", ctrlWrapper(get));
