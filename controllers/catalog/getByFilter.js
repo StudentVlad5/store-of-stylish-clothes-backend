@@ -7,31 +7,38 @@ const getByFilter = async (req, res, next) => {
     let {
       man_woman,
       category,
-      maxPrice,
+      maxPrice = 5000,
       minPrice = 0,
       product,
       sizes,
+      sort,
+      search,
       page = 1,
       perPage = 12,
     } = req.query;
     console.log("REQ.PARAMS:", req.params);
     const limit = perPage * 1;
     const skip = perPage * (page - 1);
-    let total = await Catalog.find().count();
-    let catalog = await Catalog.find().limit(limit).skip(skip);
-    let filterCatalog = await Catalog.find();
+
+    let filterCatalog;
     let filterCatalog1 = [];    
     let filterCatalog2 = [];
     let filterCatalog3 = [];
     let filterCatalog4 = [];
-    let filterCatalog5 = [];
-    const constructorData = {
-      pagination: isPagination,
-      total,
-      perPage,
-      page,
-    };
 
+    if (search !== "null" && search !== "" && search !== undefined &&
+     sizes !== "null" && sizes !== "" && sizes !== undefined) {
+      filterCatalog = await Catalog.find({$and:[{description:{ $regex: search }}, {sizes:{ $regex: sizes }}]});
+    } 
+    else if (search !== "null" && search !== "" && search !== undefined) {
+      filterCatalog = await Catalog.find({$and:[{description:{ $regex: search }}]});
+    } 
+    else if (sizes !== "null" && sizes !== "" && sizes !== undefined) {
+      filterCatalog = await Catalog.find({$and:[{sizes:{ $regex: sizes}}]});
+    } else {
+      filterCatalog = await Catalog.find();
+    }
+      
     console.log("filterCatalog", filterCatalog.length);
 
     if (man_woman !== "null" && man_woman !== "" && man_woman !== undefined) {
@@ -76,23 +83,9 @@ const getByFilter = async (req, res, next) => {
     }
     console.log("filterCatalog3", filterCatalog3.length);
 
-    if (sizes !== "null" && sizes !== "" && sizes !== undefined) {
-      console.log("sizes", [sizes]);
-      let checkfilter4;
-      typeof sizes === 'string' ? checkfilter4 = [sizes] : checkfilter4 = [...sizes];
-      console.log("checkfilter4", checkfilter4);
-
-      filterCatalog3.map((it) =>
-        {checkfilter4.map(i => {if(it.sizes.includes(i)){filterCatalog4.push(it)}})}
-      );
-    } else {
-      filterCatalog4 = Object.assign(filterCatalog3);
-    }
-    console.log("filterCatalog4", filterCatalog4.length);
-
     if (
-      minPrice !== "null" &&
-      maxPrice !== "null" &&
+      minPrice !== 0 &&
+      maxPrice !== 5000 &&
       minPrice !== "" &&
       minPrice !== undefined &&
       maxPrice !== "" &&
@@ -100,102 +93,49 @@ const getByFilter = async (req, res, next) => {
     ) {
       console.log("minPrice", minPrice);
       console.log("maxPrice", maxPrice);
-      filterCatalog4.map(
+      filterCatalog3.map(
         (it) => {if(minPrice < it.price &&  it.price < maxPrice){
-          filterCatalog5.push(it)}
+          filterCatalog4.push(it)}
         }
       );
     } else {
-      filterCatalog5 = Object.assign(filterCatalog4);
+      filterCatalog4 = Object.assign(filterCatalog3);
     }
-    console.log("filterCatalog5", filterCatalog5.length);
-    
-    // console.log(filterCatalog6.length);
-    // if (search) {
-    //   total = await Catalog.find({
-    //     name: { $regex: search },
-    //   }).count();
-    //   constructorData.total = total;
+   
+    console.log(filterCatalog4.length);
+  
+    if (sort !== "null" && sort !== "" && sort !== undefined) {
+      if (sort === 'minMaxPrice') {
+        filterCatalog4.sort((a,b)=>{
+          if(a.price>b.price){return 1} 
+          else if(a.price<=b.price){return -1} 
+          else return 0        
+        })
+      }
 
-    //   const catalog = await Catalog.find({
-    //     name: { $regex: search },
-    //   });
-
-    //   const group = await Catalog.find({
-    //     typeOfPlants: { $regex: search },
-    //   });
-
-    //   // console.log('SEARCH ~products:', catalog);
-    //   // console.log('SEARCH ~total products:', total);
-    //   // console.log('SEARCH ~group:', group);
-
-    //   res.status(200).json({ catalog, total, group });
-    // }
-
-    // if (sort) {
-    //   total = await Catalog.find({ ...filterConstructor }).count();
-    //   constructorData.total = total;
-
-    //   if (sort === 'rating') {
-    //     catalog = await Catalog.find({ ...filterConstructor })
-    //       .sort({
-    //         rating: -1,
-    //       })
-    //       .limit(limit)
-    //       .skip(skip);
-    //   }
-
-    //   if (sort === 'minMaxPrice') {
-    //     catalog = await Catalog.find({ ...filterConstructor })
-    //       .sort({
-    //         currentPrice: 1,
-    //       })
-    //       .limit(limit)
-    //       .skip(skip);
-    //   }
-
-    //   if (sort === 'maxMinPrice') {
-    //     catalog = await Catalog.find({ ...filterConstructor })
-    //       .sort({
-    //         currentPrice: -1,
-    //       })
-    //       .limit(limit)
-    //       .skip(skip);
-    //   }
-
-    //   if (sort === 'discount') {
-    //     catalog = await Catalog.find({ ...filterConstructor })
-    //       .sort({
-    //         discount: -1,
-    //       })
-    //       .limit(limit)
-    //       .skip(skip);
-    //   }
-
-    //   if (sort === 'name') {
-    //     catalog = await Catalog.find({ ...filterConstructor })
-    //       .sort({
-    //         name: 1,
-    //       })
-    //       .limit(limit)
-    //       .skip(skip);
-    //   }
-
-    //   return res.status(200).json({ catalog, total });
-    // }
+      if (sort === 'maxMinPrice') {
+        filterCatalog4.sort((a,b)=>{
+          if(a.price<b.price){return 1} 
+          else if(a.price>=b.price){return -1} 
+          else return 0        
+        })
+      }
+    }
+      console.log("filterCatalog4", filterCatalog4.length);
 
     if (isPagination) {
-      total = filterCatalog5.length;
-      let filterCatalog6 = [];
-      filterCatalog5.map((it, ind) => {
+      total = filterCatalog4.length;
+      let filterCatalog = [];
+      filterCatalog4.map((it, ind) => {
         if (+skip <= ind && ind < skip + limit) {
-          filterCatalog6.push(it);
+          filterCatalog.push(it);
         }
       });
-      catalog = [...filterCatalog6];
-
+      let catalog = [...filterCatalog];
       return res.status(200).json({ catalog, total });
     } else {
+      let total = await Catalog.find().count();
+      let catalog = await Catalog.find().limit(limit).skip(skip);
       res.status(200).json({ catalog, total });
     }
   } catch (error) {

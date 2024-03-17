@@ -12,12 +12,12 @@ const categorySchema = new Schema(
       default: [],
     },
     level_3: {
-      type: Array,
-      default: [],
+      type: Object,
+      default: {},
     },
     level_4: {
       type: Object,
-      default: [],
+      default: {},
     },
   },
   {
