@@ -10,6 +10,7 @@ const Care = require("./care");
 const Basket = require("./basket");
 const { Orders, orderValidationSchema } = require("./order");
 const Category = require("./category");
+const Shop = require("./shop");
 
 module.exports = {
   Users,
@@ -22,5 +23,6 @@ module.exports = {
   Orders,
   orderValidationSchema,
   Basket,
-  Category
+  Category,
+  Shop,
 };
