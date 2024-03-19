@@ -1,13 +1,13 @@
-const { Catalog } = require('../../models');
+const { Shop } = require('../../models');
 
-const getCatalogById = async (req, res, next) => {
+const getShopById = async (req, res, next) => {
   const id = req.params.id;
   try {
-    const catalog = await Catalog.find();
-    res.status(200).json(catalog);
+    const shop = await Shop.find({ article: id });
+    res.status(200).json(shop);
   } catch (error) {
     throw new WrongIdError(error.message);
   }
 };
 
-module.exports = getCatalogById;
+module.exports = getShopById;
