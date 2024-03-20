@@ -29,6 +29,11 @@ item.size_chart_ru = it.size_chart_ru;
 item.size_chart_ua = it.size_chart_ua;
 item.size_chart_en = it.size_chart_ua;
 item.size_chart_de = it.size_chart_ua;
+item.newPrice = (it.price * 1.1).toFixed(2);
+item.oldPrice = (it.price * 1.25).toFixed(2);
+item.status = "new";
+item.discount = +(item.oldPrice - item.newPrice).toFixed(2);
+item.rate= (Math.random() * 11).toFixed(1);
 Shop.create(item)
   })
 const shop = await Shop.find().limit(12)

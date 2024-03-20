@@ -1,4 +1,4 @@
-const { Schema, model } = require('mongoose');
+const { Schema, model } = require("mongoose");
 
 const shopSchema = new Schema({
   uuid: {
@@ -51,7 +51,7 @@ const shopSchema = new Schema({
   },
   creation_datetime: {
     type: String,
-    default: '',
+    default: "",
   },
   sizes: {
     type: String,
@@ -68,8 +68,23 @@ const shopSchema = new Schema({
   size_chart_de: {
     type: String,
   },
+  newPrice: {
+    type: Number,
+  },
+  oldPrice: {
+    type: Number,
+  },
+  status: {
+    type: String,
+  },
+  discount: {
+    type: Number,
+  },
+  rate: {
+    type: Number,
+  },
 });
 
-const Shop = model('Shop', shopSchema);
+const Shop = model("Shop", shopSchema);
 
 module.exports = Shop;
