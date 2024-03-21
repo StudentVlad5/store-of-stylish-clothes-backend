@@ -310,6 +310,43 @@ const getShopByFilter = async (req, res, next) => {
     let total = await Shop.find({product : product, category : category, price: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
+      // фільтр чоловік/жінка  
+      // +product
+      
+    if((man_woman !== "null" && man_woman !== "" && man_woman !== undefined) && 
+    (category == "null" || category == "" || category == undefined) &&
+    (product !== "null" && product !== "" && product !== undefined) &&
+    (sizes == "null" || sizes == "" || sizes == undefined) &&
+    (search == "null" || search == "" || search == undefined)     
+    ){  
+      console.log(" пофільтр чоловік/жінка   + product");
+    let catalog = {}
+    if(sort === "minMaxPrice"){
+    catalog = await Shop.find({product : product, man_women : man_woman, price: { $gte: minPrice, $lte: maxPrice }})
+    .sort({
+      price: 1,
+    })
+    .limit(limit)
+    .skip(skip);
+  }
+  else if(sort === "maxMinPrice"){
+    catalog = await Shop.find({product : product, man_women : man_woman, price: { $gte: minPrice, $lte: maxPrice }})
+    .sort({
+      price: -1,
+    })
+    .limit(limit)
+    .skip(skip);
+  }
+  else {
+    catalog = await Shop.find({product : product, man_women : man_woman, price: { $gte: minPrice, $lte: maxPrice }})
+    .sort({
+      price: 1,
+    })
+    .limit(limit)
+    .skip(skip);}
+    let total = await Shop.find({product : product, man_women : man_woman, price: { $gte: minPrice, $lte: maxPrice }}).count();
+    return res.status(200).json({ catalog, total });
+  }
 
       // фільтр по одежі /взуття/ 
       // +sizes
