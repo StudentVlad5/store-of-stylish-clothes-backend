@@ -7,7 +7,7 @@ const orderValidationSchema = Joi.object({
   user_id: Joi.string().min(3).max(32).required(),
   basket: Joi.array().required(),
   totalAmount: Joi.string().min(1).max(32).required(),
-  totalDiscount: Joi.string().min(1).max(32).required(),
+  // totalDiscount: Joi.string().min(1).max(32).required(),
   totalPayment: Joi.string().min(1).max(32).required(),
   delivery: Joi.array().required(),
   metodPayment: Joi.array().required(),
@@ -28,10 +28,10 @@ const OrdersSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Set totalAmount'],
     },
-    totalDiscount: {
-      type: Number,
-      required: [true, 'Set totalDiscount'],
-    },
+    // totalDiscount: {
+    //   type: Number,
+    //   required: [true, 'Set totalDiscount'],
+    // },
     totalPayment: {
       type: Number,
       required: [true, 'Set totalPayment'],
