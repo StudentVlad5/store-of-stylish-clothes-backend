@@ -4,31 +4,13 @@ const shopSchema = new Schema({
   uuid: {
     type: String,
   },
-  title_ua: {
-    type: String,
-  },
-  title_de: {
-    type: String,
-  },
-  title_ru: {
-    type: String,
-  },
-  title_en: {
+  title: {
     type: String,
   },
   article: {
     type: String,
   },
-  description_ua: {
-    type: String,
-  },
-  description_de: {
-    type: String,
-  },
-  description_ru: {
-    type: String,
-  },
-  description_en: {
+  description: {
     type: String,
   },
   man_women: {
@@ -46,9 +28,6 @@ const shopSchema = new Schema({
   images: {
     type: String,
   },
-  price: {
-    type: Number,
-  },
   creation_datetime: {
     type: String,
     default: "",
@@ -56,28 +35,46 @@ const shopSchema = new Schema({
   sizes: {
     type: String,
   },
-  size_chart_ru: {
+  size_chart: {
     type: String,
   },
-  size_chart_ua: {
-    type: String,
-  },
-  size_chart_en: {
-    type: String,
-  },
-  size_chart_de: {
-    type: String,
-  },
-  newPrice: {
+  price_ua: {
     type: Number,
   },
-  oldPrice: {
+  newPrice_ua: {
+    type: Number,
+  },
+  oldPrice_ua: {
+    type: Number,
+  },
+  price_usd: {
+    type: Number,
+  },
+  newPrice_usd: {
+    type: Number,
+  },
+  oldPrice_usd: {
+    type: Number,
+  },
+  price_euro: {
+    type: Number,
+  },
+  newPrice_euro: {
+    type: Number,
+  },
+  oldPrice_euro: {
     type: Number,
   },
   status: {
     type: String,
   },
-  discount: {
+  discount_ua: {
+    type: Number,
+  },
+  discount_usd: {
+    type: Number,
+  },
+  discount_euro: {
     type: Number,
   },
   rate: {
@@ -85,6 +82,6 @@ const shopSchema = new Schema({
   },
 });
 
-const Shop = model("Shop", shopSchema);
+const Shop_de = model("Shop_de", shopSchema);
 
-module.exports = Shop;
+module.exports = Shop_de;
