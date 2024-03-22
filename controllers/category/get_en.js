@@ -1,10 +1,10 @@
 const { ValidationError } = require("../../helpers");
-const { Category, Catalog } = require("../../models");
+const { Category_en, Catalog } = require("../../models");
 
-const get = async (req, res, next) => {
+const get_en = async (req, res, next) => {
   const today = new Date().getDate();
   try {
-    const categoryFilters = await Category.find();
+    const categoryFilters = await Category_en.find();
     if( categoryFilters && (today - new Date(categoryFilters[0]?.createdAt).getDate() > 7)) {
     const catalog = await Catalog.find();
     let filterParams = {
@@ -35,9 +35,9 @@ const get = async (req, res, next) => {
           filterParams.level_4[level_2].push(it)}})  
       });
     }
-    await Category.findOneAndDelete({ _id: categoryFilters[0]?._id.toString()
+    await Category_en.findOneAndDelete({ _id: categoryFilters[0]?._id.toString()
     });
-    const category = await Category.create(filterParams);
+    const category = await Category_en.create(filterParams);
     res.status(200).json(category);
   }
   res.status(200).json(categoryFilters);
@@ -46,4 +46,4 @@ const get = async (req, res, next) => {
   }
 };
 
-module.exports = get;
+module.exports = get_en

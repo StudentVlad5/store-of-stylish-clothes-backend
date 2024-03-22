@@ -26,6 +26,6 @@ const categorySchema = new Schema(
   }
 );
 
-const Category = model("Category", categorySchema);
+const Category_en = model("Category_en", categorySchema);
 
-module.exports = Category;
+module.exports = Category_en;
