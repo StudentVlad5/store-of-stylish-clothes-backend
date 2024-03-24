@@ -15,6 +15,14 @@ const {
   getShopById_ru,
   getShopById_de,
   getShopById_en,
+  getDiscountShop_ua,
+  getDiscountShop_ru,
+  getDiscountShop_en,
+  getDiscountShop_de,
+  getRateShop_ua,
+  getRateShop_ru,
+  getRateShop_en,
+  getRateShop_de
 } = shop;
 const router = express.Router();
 
@@ -27,6 +35,16 @@ router.get("/ua", ctrlWrapper(getShopByFilter_ua));
 router.get("/ru", ctrlWrapper(getShopByFilter_ru));
 router.get("/de", ctrlWrapper(getShopByFilter_de));
 router.get("/en", ctrlWrapper(getShopByFilter_en));
+
+router.get("/ua/discount", ctrlWrapper(getDiscountShop_ua));
+router.get("/ru/discount", ctrlWrapper(getDiscountShop_ru));
+router.get("/de/discount", ctrlWrapper(getDiscountShop_de));
+router.get("/en/discount", ctrlWrapper(getDiscountShop_en));
+
+router.get("/ua/rate", ctrlWrapper(getRateShop_ua));
+router.get("/ru/rate", ctrlWrapper(getRateShop_ru));
+router.get("/de/rate", ctrlWrapper(getRateShop_de));
+router.get("/en/rate", ctrlWrapper(getRateShop_en));
 
 router.get("/ua/byid/:id/", ctrlWrapper(getShopById_ua));
 router.get("/ru/byid/:id/", ctrlWrapper(getShopById_ru));

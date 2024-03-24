@@ -10,6 +10,14 @@ const getShopById_ua = require('./getShopById_ua');
 const getShopById_ru = require('./getShopById_ru');
 const getShopById_en = require('./getShopById_en');
 const getShopById_de = require('./getShopById_de');
+const getRateShop_ua = require('./getRateShop_ua');
+const getRateShop_ru = require('./getRateShop_ru');
+const getRateShop_en = require('./getRateShop_en');
+const getRateShop_de = require('./getRateShop_de');
+const getDiscountShop_ua = require('./getDiscountShop_ua');
+const getDiscountShop_ru = require('./getDiscountShop_ru');
+const getDiscountShop_en = require('./getDiscountShop_en');
+const getDiscountShop_de = require('./getDiscountShop_de');
 
 module.exports = {
   getShop_ua,
@@ -24,4 +32,12 @@ module.exports = {
   getShopById_ru,
   getShopById_en,
   getShopById_de,
+  getRateShop_ua,
+  getRateShop_ru,
+  getRateShop_en,
+  getRateShop_de,
+  getDiscountShop_ua,
+  getDiscountShop_ru,
+  getDiscountShop_en,
+  getDiscountShop_de
 };
