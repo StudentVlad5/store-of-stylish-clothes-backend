@@ -1,8 +1,8 @@
-// const { CitiesNP } = require("../../models");
+const { CitiesNP } = require("../../models");
 const axios = require("axios");
 
 const postByFilter = async (req, res, next) => {
-  const filter = req.body.filter;
+  // const filter = req.body.filter;
 
   const customHeaders = {
     "Content-Type": "application/json, text/plain, */*",
@@ -22,7 +22,7 @@ const postByFilter = async (req, res, next) => {
         data: {
           apiKey: process.env.NovaPoshta_KEY,
           modelName: "Address",
-          calledMethod: "getSettlements",
+          calledMethod: "getCities",
           Warehouse: 1,
           methodProperties: {
             Warehouse: "1",
@@ -32,7 +32,6 @@ const postByFilter = async (req, res, next) => {
         },
       })
         .then((data) => {
-          console.log(data.data);
           res.status(200).json(data.data);
         })
         .catch((error) => {

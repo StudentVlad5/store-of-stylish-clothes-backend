@@ -6,12 +6,12 @@ const postDepartmentsByFilter = async (req, res, next) => {
 
   const url = "https://api.novaposhta.ua/v2.0/json/";
   const data = {
-    apiKey: "",
+  	apiKey: "49b981dbd6ba1ea4ef89cdbeccf223c9",
     modelName: "Address",
     calledMethod: "getWarehouses",
-    methodProperties: {
-      CityRef: `${filter}`,
-    },
+    methodProperties: 
+      {CityRef: filter}
+  
   };
   const customHeaders = {
     "Content-Type": "application/json",
@@ -19,7 +19,7 @@ const postDepartmentsByFilter = async (req, res, next) => {
     "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
   };
   const dateNow = Date.now();
-
+console.log("filter", filter)
   if (filter) {
     try {
       const departments = await DepartmentsNP.find({
@@ -39,6 +39,7 @@ const postDepartmentsByFilter = async (req, res, next) => {
             headers: customHeaders,
           })
           .then(({ data }) => {
+            console.log("data", data)
             data.data.map((key) => {
               key.CreateAt = Date.now();
               DepartmentsNP.insertMany(key);
