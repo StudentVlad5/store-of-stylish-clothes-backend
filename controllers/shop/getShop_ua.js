@@ -10,7 +10,7 @@ const getShop_ua = async (req, res, next) => {
     array.map(it => {
 let item = {};
 item.uuid = it.uuid;
-item.title = it.title_ua;
+item.title = it.title;
 item.article = it.article;
 item.description = it.description;
 item.man_women = it.categories.split(" > ")[0];
