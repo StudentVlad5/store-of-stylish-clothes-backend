@@ -1,7 +1,7 @@
-const { Catalog } = require("../../models");
+const { Shop_de } = require("../../models");
 const { Users } = require("../../models");
 
-const getFavorites = async (req, res, next) => {
+const getFavorites_ua = async (req, res, next) => {
   const { page = 1, perPage = 12 } = req.query;
   const id = req.params.id;
 
@@ -12,7 +12,7 @@ const getFavorites = async (req, res, next) => {
     if (user.favorites !== "" && user.favorites !== undefined) {
       for (let key of user.favorites) {
         if (key !== "" && key !== undefined && key !== null) {
-          data.push(await Catalog.findOne({ article: +key }));
+          data.push(await Shop_de.findOne({ article: key }));
         }
       }
     }
@@ -30,4 +30,4 @@ const getFavorites = async (req, res, next) => {
     res.status(400).json({ message: "Invalid characters" });
   }
 };
-module.exports = getFavorites;
+module.exports = getFavorites_ua;

@@ -1,55 +1,73 @@
-const express = require('express');
-const { auth: ctrl } = require('../../controllers');
+const express = require("express");
+const { auth: ctrl } = require("../../controllers");
 const {
   ctrlWrapper,
   authMiddleware,
   validation,
   validateId,
-} = require('../../middleWares');
-const { upload } = require('../../middleWares/uploadMiddleware');
+} = require("../../middleWares");
+const { upload } = require("../../middleWares/uploadMiddleware");
 
 const {
   userValidationSchema,
   userUpdateValidationSchema,
-} = require('../../models');
+} = require("../../models");
 
 const router = express.Router();
 
-router.post('/signin', ctrlWrapper(ctrl.signin));
+router.post("/signin", ctrlWrapper(ctrl.signin));
 router.post(
-  '/signup',
+  "/signup",
   validation(userValidationSchema),
   ctrlWrapper(ctrl.signup)
 );
 
-router.post('/logout', ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.logout));
-router.post('/forgotPassword', ctrlWrapper(ctrl.forgotPassword));
-router.post('/changePassword', ctrlWrapper(ctrl.changePassword));
+router.post("/logout", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.logout));
+router.post("/forgotPassword", ctrlWrapper(ctrl.forgotPassword));
+router.post("/changePassword", ctrlWrapper(ctrl.changePassword));
 router.post(
-  '/favorites/:id',
+  "/favorites/:id",
   ctrlWrapper(authMiddleware),
   validateId,
   ctrlWrapper(ctrl.addFavorite)
 );
 router.delete(
-  '/favorites/:id',
+  "/favorites/:id",
   ctrlWrapper(authMiddleware),
   validateId,
   ctrlWrapper(ctrl.deleteFavorite)
 );
 router.post(
-  '/catalog/:id',
+  "/shop/ua/:id",
   ctrlWrapper(authMiddleware),
   validateId,
-  ctrlWrapper(ctrl.getFavorites)
+  ctrlWrapper(ctrl.getFavorites_ua)
+);
+router.post(
+  "/shop/ru/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.getFavorites_ru)
+);
+router.post(
+  "/shop/en/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.getFavorites_en)
+);
+router.post(
+  "/shop/de/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.getFavorites_de)
 );
 
-router.post('/', ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
+router.post("/", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 
 router.patch(
-  '/user/:id',
+  "/user/:id",
   ctrlWrapper(authMiddleware),
-  upload.single('avatar'),
+  upload.single("avatar"),
   validation(userUpdateValidationSchema),
   ctrlWrapper(ctrl.update)
 );
