@@ -12,7 +12,8 @@ const addItemInBasket = async (req, res, next) => {
       checkItem[0].optionData.find((item) => {
         if (
           item.title === fullData.optionData[0].title &&
-          item._id === fullData.optionData[0]._id
+          item._id === fullData.optionData[0]._id &&
+          item.size === fullData.optionData[0].size
         ) {
           item.quantity = item.quantity + fullData.optionData[0].quantity;
           status = false;
