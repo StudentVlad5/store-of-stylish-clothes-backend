@@ -28,10 +28,9 @@ const OrdersSchema = new mongoose.Schema(
       type: Number,
       required: [true, 'Set totalAmount'],
     },
-    // totalDiscount: {
-    //   type: Number,
-    //   required: [true, 'Set totalDiscount'],
-    // },
+    invoiceId: {
+      type: String,
+    },
     totalPayment: {
       type: Number,
       required: [true, 'Set totalPayment'],

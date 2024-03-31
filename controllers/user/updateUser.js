@@ -30,10 +30,11 @@ const updateUser = async (req, res, next) => {
         auth: {
           user: process.env.EMAIL_SEND,
           pass: process.env.EMAIL_PASSWORD,
+          login: "Quillis",
         },
       });
 
-      const from = 'Florist Support <vlad_np@ukr.net>';
+      const from = 'Quillis Support <vlad_np@ukr.net>';
       const to = user.email;
 
       transporter.sendMail(
@@ -41,7 +42,7 @@ const updateUser = async (req, res, next) => {
           from,
           to,
           subject: 'Change password',
-          html: `<h1>Hello</h1><p>Hello. Please pay attention to replacing the access password to the Florist service</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Florist service support</p>`,
+          html: `<h1>Hello</h1><p>Hello. Please pay attention to replacing the access password to the Quillis service</p><p>Hope to see you soon. <br> Wish you a nice day.</p><p>Your Quillis service support</p>`,
         },
         (err, data) => {
           if (err) {
