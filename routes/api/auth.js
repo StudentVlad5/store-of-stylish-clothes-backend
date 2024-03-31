@@ -6,12 +6,11 @@ const {
   validation,
   validateId,
 } = require("../../middleWares");
-const { upload } = require("../../middleWares/uploadMiddleware");
-
 const {
   userValidationSchema,
   userUpdateValidationSchema,
 } = require("../../models");
+const uploadCloud = require("../../middleWares/uploadMiddleware");
 
 const router = express.Router();
 
@@ -67,7 +66,7 @@ router.post("/", ctrlWrapper(authMiddleware), ctrlWrapper(ctrl.current));
 router.patch(
   "/user/:id",
   ctrlWrapper(authMiddleware),
-  upload.single("avatar"),
+  uploadCloud.single("avatar"),
   validation(userUpdateValidationSchema),
   ctrlWrapper(ctrl.update)
 );
