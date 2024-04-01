@@ -32,7 +32,7 @@ const createOrder = async (req, res, next) => {
 
     let customOrder = {
       amount: fullData?.totalPayment * 100,
-      ccy: 980,
+      ccy: fullData?.currency === "$" ? 840 : fullData?.currency === "€" ? 978 : 980,
       merchantPaymInfo: {
         reference: "84d0070ee4e44667b31371d8f8813947",
         destination: "ФОП Новосад О.С.",
