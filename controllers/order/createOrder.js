@@ -107,8 +107,8 @@ const createOrder = async (req, res, next) => {
 
     const _id = fullData.basket._id;
     await Basket.deleteMany({ _id });
-    const resCreate = await Orders.create(fullData);
-    if (resCreate.selectedPaymentOption === "Payment by bank card") {
+
+    if (fullData.selectedPaymentOption === "Payment by bank card") {
       await axios
         .post(
           `https://api.monobank.ua/api/merchant/invoice/create`,
@@ -122,16 +122,16 @@ const createOrder = async (req, res, next) => {
           }
         )
         .then(function (response) {
-          Orders.findOneAndUpdate(
-            { _id: resCreate._id },
-            { invoiceId: response.data.invoiceId }
-          );
+          fullData.invoiceId = response.data.invoiceId;
+          fullData.pageUrl = response.data.pageUrl;
+          Orders.create(fullData);
           return res.status(201).json(response.data);
         })
         .catch(function (error) {
           console.log(error);
         });
     }
+    const resCreate = await Orders.create(fullData);
     return res.status(201).json(resCreate);
   } catch (err) {
     throw new ValidationError(err.message);

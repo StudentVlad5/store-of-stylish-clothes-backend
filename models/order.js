@@ -31,6 +31,9 @@ const OrdersSchema = new mongoose.Schema(
     invoiceId: {
       type: String,
     },
+    pageUrl: {
+      type: String,
+    },
     totalPayment: {
       type: Number,
       required: [true, 'Set totalPayment'],
