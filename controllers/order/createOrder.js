@@ -7,36 +7,54 @@ const nodemailer = require("nodemailer");
 const createOrder = async (req, res, next) => {
   try {
     const fullData = { ...req.body };
+    let servicePayment;
+    if((fullData.currency === "$" || fullData.currency ==="€") && fullData.country === "Ukraine"){servicePayment = 2} 
+    else if (fullData.currency === "₴"  && fullData.country === "Ukraine"){servicePayment = 70} 
+    else if (fullData.currency === "₴"  && fullData.country !== "Ukraine"){servicePayment = 1000} 
+    else { servicePayment = 25 }
     let basketOrder = [];
     fullData?.basket?.optionData.map((it) => {
       basketOrder.push({
         name: it.title,
         qty: it.quantity,
-        sum: it.newPrice * 100,
+        sum: Math.round(it.newPrice * 100, 2),
         icon: it?.mainImage,
         unit: "од.",
         code: it?.options,
         header: "Quillis",
         footer: "Thank for the order",
         tax: [],
-        uktzed: "string",
+        uktzed: "",
         discounts: [
           {
             type: "DISCOUNT",
             mode: "PERCENT",
-            value: ((it.oldPrice - it.newPrice) / it.oldPrice) * 100,
+            value: Math.round(((it.oldPrice - it.newPrice) / it.oldPrice) * 100, 2)
           },
         ],
       });
     });
+    
+    basketOrder.push({
+      name: "Delivery service",
+      qty: 1,
+      sum: Math.round(servicePayment * 100, 2),
+      icon: "",
+      unit: "",
+      code: "",
+      header: "Quillis",
+      footer: "Thank for the order",
+      tax: [],
+      uktzed: "",
+    });
 
     let customOrder = {
-      amount: fullData?.totalPayment * 100,
+      amount: Math.round((fullData?.totalPayment + servicePayment) * 100, 2),
       ccy: fullData?.currency === "$" ? 840 : fullData?.currency === "€" ? 978 : 980,
       merchantPaymInfo: {
         reference: "84d0070ee4e44667b31371d8f8813947",
         destination: "ФОП Новосад О.С.",
-        comment: "Придбання одягу",
+        comment: `Оплата за замовлення ${fullData?.basket?.optionData._id}без ПДВ.`,
         customerEmails: [],
         basketOrder: [...basketOrder],
       },
@@ -131,8 +149,10 @@ const createOrder = async (req, res, next) => {
           console.log(error);
         });
     }
+    else {
     const resCreate = await Orders.create(fullData);
     return res.status(201).json(resCreate);
+    }
   } catch (err) {
     throw new ValidationError(err.message);
   }

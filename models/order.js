@@ -42,6 +42,10 @@ const OrdersSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Set totalPayment'],
     },
+    country: {
+      type: String,
+      default: "Ukraine",
+    },
     deliveryOrder: {
       type: Object,
       required: [true, 'Set delivery'],
