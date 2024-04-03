@@ -22,7 +22,11 @@ const {
   getRateShop_ua,
   getRateShop_ru,
   getRateShop_en,
-  getRateShop_de
+  getRateShop_de,
+  getShopByFilterDiscounts_ua,
+  getShopByFilterDiscounts_ru,
+  getShopByFilterDiscounts_de,
+  getShopByFilterDiscounts_en
 } = shop;
 const router = express.Router();
 
@@ -50,5 +54,10 @@ router.get("/ua/byid/:id/", ctrlWrapper(getShopById_ua));
 router.get("/ru/byid/:id/", ctrlWrapper(getShopById_ru));
 router.get("/de/byid/:id/", ctrlWrapper(getShopById_de));
 router.get("/en/byid/:id/", ctrlWrapper(getShopById_en));
+
+router.get("/ua/discounts", ctrlWrapper(getShopByFilterDiscounts_ua));
+router.get("/ru/discounts", ctrlWrapper(getShopByFilterDiscounts_ru));
+router.get("/de/discounts", ctrlWrapper(getShopByFilterDiscounts_de));
+router.get("/en/discounts", ctrlWrapper(getShopByFilterDiscounts_en));
 
 module.exports = routerShop = router;

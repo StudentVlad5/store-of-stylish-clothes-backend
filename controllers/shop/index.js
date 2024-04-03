@@ -18,6 +18,7 @@ const getDiscountShop_ua = require('./getDiscountShop_ua');
 const getDiscountShop_ru = require('./getDiscountShop_ru');
 const getDiscountShop_en = require('./getDiscountShop_en');
 const getDiscountShop_de = require('./getDiscountShop_de');
+const getShopByFilterDiscounts_ua = require('./getShopByFilterDiscounts_ua');
 
 module.exports = {
   getShop_ua,
@@ -39,5 +40,6 @@ module.exports = {
   getDiscountShop_ua,
   getDiscountShop_ru,
   getDiscountShop_en,
-  getDiscountShop_de
+  getDiscountShop_de,
+  getShopByFilterDiscounts_ua
 };
