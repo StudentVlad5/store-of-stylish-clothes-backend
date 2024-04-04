@@ -8,7 +8,7 @@ const {
   // routerEvent,
   // routerUpdateEvent,
   // routerOwner,
-  // routerMessage,
+  routerMessage,
   // routerAdmin,
   routerCatalog,
   // routerSities,
@@ -42,6 +42,7 @@ app.use("/api/category", routerCategory);
 app.use("/api/care", routerCare);
 app.use("/api/order", routerOrder);
 app.use("/api/basket", routerBasket);
+app.use("/api/message", routerMessage);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");

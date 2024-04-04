@@ -17,6 +17,7 @@ const Shop_ua = require("./shop_ua");
 const Shop_ru = require("./shop_ru");
 const Shop_en = require("./shop_en");
 const Shop_de = require("./shop_de");
+const { Messages, eMailValidationSchema } = require("./message");
 
 module.exports = {
   Users,
@@ -37,4 +38,6 @@ module.exports = {
   Shop_ru,
   Shop_en,
   Shop_de,
+  Messages,
+  eMailValidationSchema,
 };

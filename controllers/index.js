@@ -8,6 +8,7 @@ const departments = require("./departments");
 const care = require("./care");
 const order = require("./order");
 const basket = require("./basket");
+const message = require("./message");
 
 module.exports = {
   auth,
@@ -18,5 +19,6 @@ module.exports = {
   order,
   basket,
   category,
-  shop
+  shop,
+  message
 };

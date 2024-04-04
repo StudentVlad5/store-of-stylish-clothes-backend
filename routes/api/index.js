@@ -7,6 +7,7 @@ const routerDepartments = require("./departments");
 const routerCare = require("./care");
 const routerOrder = require("./order");
 const routerBasket = require("./basket");
+const routerMessage = require("./message");
 
 module.exports = {
   routerAuth,
@@ -17,5 +18,6 @@ module.exports = {
   routerOrder,
   routerBasket,
   routerCategory,
-  routerShop
+  routerShop,
+  routerMessage
 };
