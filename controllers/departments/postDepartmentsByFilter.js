@@ -19,12 +19,12 @@ const postDepartmentsByFilter = async (req, res, next) => {
     "Access-Control-Allow-Methods": "GET,POST,PUT,PATCH,DELETE,OPTIONS",
   };
   const dateNow = Date.now();
-console.log("filter", filter)
   if (filter) {
     try {
       const departments = await DepartmentsNP.find({
         CityRef: { $regex: `${filter}` },
       });
+      console.log("departments", departments.length)
       if (departments.length > 0) {
         if ((dateNow - departments[0].CreateAt) / (1000 * 60 * 60 * 24) > 7) {
           DepartmentsNP.deleteMany({ CityRef: filter });
@@ -32,19 +32,22 @@ console.log("filter", filter)
       }
 
       if (departments.length > 0) {
-        res.status(200).json(departments);
+        const listOfDepartments = [];
+        departments.map(it=>listOfDepartments.push({Description: it.Description}))
+        res.status(200).json(listOfDepartments);
       } else {
         axios
           .post(url, data, {
             headers: customHeaders,
           })
           .then(({ data }) => {
-            console.log("data", data)
             data.data.map((key) => {
               key.CreateAt = Date.now();
               DepartmentsNP.insertMany(key);
             });
-            res.status(200).json(data.data);
+            const listOfDepartments = [];
+            data.data.map(it=>listOfDepartments.push({Description: it.Description}))
+            res.status(200).json(listOfDepartments);
           })
           .catch((error) => {
             console.error(error);
