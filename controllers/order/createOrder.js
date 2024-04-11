@@ -8,10 +8,18 @@ const createOrder = async (req, res, next) => {
   try {
     const fullData = { ...req.body };
     let servicePayment;
-    if((fullData.currency === "$" || fullData.currency ==="€") && fullData.country === "Ukraine"){servicePayment = 2} 
-    else if (fullData.currency === "₴"  && fullData.country === "Ukraine"){servicePayment = 70} 
-    else if (fullData.currency === "₴"  && fullData.country !== "Ukraine"){servicePayment = 1000} 
-    else { servicePayment = 25 }
+    if (
+      (fullData.currency === "$" || fullData.currency === "€") &&
+      fullData.country === "Ukraine"
+    ) {
+      servicePayment = 2;
+    } else if (fullData.currency === "₴" && fullData.country === "Ukraine") {
+      servicePayment = 70;
+    } else if (fullData.currency === "₴" && fullData.country !== "Ukraine") {
+      servicePayment = 1000;
+    } else {
+      servicePayment = 25;
+    }
     let basketOrder = [];
     fullData?.basket?.optionData.map((it) => {
       basketOrder.push({
@@ -29,12 +37,15 @@ const createOrder = async (req, res, next) => {
           {
             type: "DISCOUNT",
             mode: "PERCENT",
-            value: Math.round(((it.oldPrice - it.newPrice) / it.oldPrice) * 100, 2)
+            value: Math.round(
+              ((it.oldPrice - it.newPrice) / it.oldPrice) * 100,
+              2
+            ),
           },
         ],
       });
     });
-    
+
     basketOrder.push({
       name: "Delivery service",
       qty: 1,
@@ -50,7 +61,12 @@ const createOrder = async (req, res, next) => {
 
     let customOrder = {
       amount: Math.round((fullData?.totalPayment + servicePayment) * 100, 2),
-      ccy: fullData?.currency === "$" ? 840 : fullData?.currency === "€" ? 978 : 980,
+      ccy:
+        fullData?.currency === "$"
+          ? 840
+          : fullData?.currency === "€"
+          ? 978
+          : 980,
       merchantPaymInfo: {
         reference: "84d0070ee4e44667b31371d8f8813947",
         destination: "ФОП Новосад О.С.",
@@ -68,11 +84,6 @@ const createOrder = async (req, res, next) => {
       },
     };
 
-    console.log(
-      "process.env.EMAIL_SEND",
-      process.env.EMAIL_SEND,
-      process.env.EMAIL_PASSWORD
-    );
     const transporter = nodemailer.createTransport({
       host: "smtp.ukr.net",
       port: 465,
@@ -86,33 +97,92 @@ const createOrder = async (req, res, next) => {
 
     const from = "Quillis Support  <vlad_np@ukr.net>";
     const to = "for_test_mern@ukr.net";
+    const toUser = `${fullData?.email}`;
 
     transporter.sendMail(
       {
         from,
         to,
         subject: "New Order Quillis",
-        html: `<h1>Hello</h1>
-        <p>${fullData.totalPayment}</p>
-        ${fullData.basket.optionData.map((it) => 
-          {return (`
-            <p>${it?.title}</p>
-            <p>${it?.article}</p>
-            <p>${it?.newPrice}</p>
-            <p>${it?.currency}</p>
-            <p>${it?.quantity}</p>
-            <p>${it?.options}</p>
-            `
-          )}
-        )}
-        <p>${fullData?.deliveryOrder.delivery}</p>
-        <p>${fullData?.deliveryOrder.cityDelivery}</p>
-        <p>${fullData?.deliveryOrder.departmentDelivery}</p>
-        <p>${fullData?.selectedPaymentOption}</p>
-        <p>${fullData?.name}</p>
-        <p>${fullData?.phone}</p>
-        <p>${fullData?.email}</p>   
+        html: `<h1>Вітаю, в магазині оформлено замовлення</h1>
+        <p>Сума оплати : ${fullData.totalPayment}</p>
+        ${fullData.basket.optionData.map((it) => {
+          return `
+            <p>Замовлено товар: ${it?.title}</p>
+            <p>Код товару: ${it?.article}</p>
+            <p>Ціна 1 шт${it?.newPrice}</p>
+            <p>Валюта: ${it?.currency}</p>
+            <p>Кількість: ${it?.quantity}</p>
+            <p>Розміри або додаткові умови${it?.options}</p>
+            `;
+        })}
+        <p>Доставку замовлено від: ${fullData?.deliveryOrder.delivery}</p>
+        <p>У населений пункт:  ${fullData?.deliveryOrder.cityDelivery}</p>
+        <p>У відділення:  ${fullData?.deliveryOrder.departmentDelivery}</p>
+        <p>Метод оплати:  ${fullData?.selectedPaymentOption}</p>
+        <p>Замовник: ${fullData?.name}</p>
+        <p>Телефон замовника:  ${fullData?.phone}</p>
+        <p>Пошта замовника:  ${fullData?.email}</p>   
         <p>Your Quillis Service Support</p>`,
+      },
+      (err, data) => {
+        if (err) {
+          console.error("Error sending:", err);
+        } else {
+          console.log("Letter sent");
+        }
+      }
+    );
+
+    transporter.sendMail(
+      {
+        from,
+        to: toUser,
+        subject: "New Order Quillis - store of stylish clothes and shoes",
+        html: `<h1>Вітаємо</h1>, 
+        <h3>Дякую за оформлення замовлення в магазині Quillis</h3>
+        ${fullData.basket.optionData.map((it) => {
+          return `
+            <p>Замовлено товар: ${it?.title}</p>
+            <p>Код товару: ${it?.article}</p>
+            <p>За ціною  ${it?.newPrice} ${it?.currency}</p>
+            <p><img src=${it?.mainImage} style="width:250px; height:250px"/></p>
+            <p>Кількість: ${it?.quantity}</p>
+            <p>Розміри або додаткові умови:  ${it?.options}</p>
+            `;
+        })}
+        <p>Доставку замовлено від: ${fullData?.deliveryOrder.delivery === 'NovaPoshta'} ? 'Нова Пошта' : ${fullData?.deliveryOrder.delivery === 'UkrPoshta'} ? 'УкрПошта' : 'Доставка за адресою'}</p>
+        <p>У населений пункт:  ${fullData?.deliveryOrder.cityDelivery} ${
+          fullData?.deliveryOrder.departmentDelivery
+        }</p>
+        <p>Метод оплати:  ${
+          fullData?.selectedPaymentOption === "Payment by bank card"
+            ? "Оплата карткою Visa|Mastercard, Google Pay, Apple Pay"
+            : "Оплата при отримані"
+        }</p>
+        <p>Ми вже працюємо над пакуванням замовлення.</p>
+        <p>З вдячніст'ю, служба підтримки  Quillis Service</p>
+        <br/>
+        <br/>
+        <h1>Hello</h1>, 
+        <h3>Thank you for an order at the Quillis store</h3>
+        ${fullData.basket.optionData.map((it) => {
+          return `
+            <p>Ordered goods: ${it?.title}</p>
+            <p>Product code: ${it?.article}</p>
+            <p>For the price  ${it?.newPrice} ${it?.currency}</p>
+            <p><img src=${it?.mainImage} style="width:250px; height:250px"/></p>
+            <p>The amount: ${it?.quantity}</p>
+            <p>Sizes or additional conditions:  ${it?.options}</p>
+            `;
+        })}
+        <p>Delivery ordered from: ${fullData?.deliveryOrder.delivery}</p>
+        <p>To the settlement:  ${fullData?.deliveryOrder.cityDelivery} ${
+          fullData?.deliveryOrder.departmentDelivery
+        }</p>
+        <p>Payment method:  ${fullData?.selectedPaymentOption}</p>
+        <p>We are already working on packing the order.</p>
+        <p>Sincerely, Quillis Service Support</p>`,
       },
       (err, data) => {
         if (err) {
@@ -148,10 +218,9 @@ const createOrder = async (req, res, next) => {
         .catch(function (error) {
           console.log(error);
         });
-    }
-    else {
-    const resCreate = await Orders.create(fullData);
-    return res.status(201).json(resCreate);
+    } else {
+      const resCreate = await Orders.create(fullData);
+      return res.status(201).json(resCreate);
     }
   } catch (err) {
     throw new ValidationError(err.message);
