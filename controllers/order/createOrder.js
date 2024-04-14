@@ -96,9 +96,10 @@ const createOrder = async (req, res, next) => {
     });
 
     const from = "Quillis Support  <vlad_np@ukr.net>";
-    const to = "for_test_mern@ukr.net";
+    const to = "for_test_mern@ukr.net, quillis.info@gmail.com";
     const toUser = `${fullData?.email}`;
-
+    const deliveryType = fullData?.deliveryOrder.delivery === 'NovaPoshta' ? 'Нова Пошта' : fullData?.deliveryOrder.delivery === 'UkrPoshta' ? 'УкрПошта' : 'Доставка за адресою';
+    const paymentType = fullData?.selectedPaymentOption === "Payment by bank card" ? "Оплата карткою Visa|Mastercard, Google Pay, Apple Pay" : "Оплата при отримані";
     transporter.sendMail(
       {
         from,
@@ -110,10 +111,10 @@ const createOrder = async (req, res, next) => {
           return `
             <p>Замовлено товар: ${it?.title}</p>
             <p>Код товару: ${it?.article}</p>
-            <p>Ціна 1 шт${it?.newPrice}</p>
+            <p>Ціна 1 шт:  ${it?.newPrice}</p>
             <p>Валюта: ${it?.currency}</p>
             <p>Кількість: ${it?.quantity}</p>
-            <p>Розміри або додаткові умови${it?.options}</p>
+            <p>Розміри або додаткові умови:  ${it?.options}</p>
             `;
         })}
         <p>Доставку замовлено від: ${fullData?.deliveryOrder.delivery}</p>
@@ -148,18 +149,14 @@ const createOrder = async (req, res, next) => {
             <p>За ціною  ${it?.newPrice} ${it?.currency}</p>
             <p><img src=${it?.mainImage} style="width:250px; height:250px"/></p>
             <p>Кількість: ${it?.quantity}</p>
-            <p>Розміри або додаткові умови:  ${it?.options}</p>
+            <p>Розміри & додаткові умови:  ${it?.options}</p>
             `;
         })}
-        <p>Доставку замовлено від: ${fullData?.deliveryOrder.delivery === 'NovaPoshta'} ? 'Нова Пошта' : ${fullData?.deliveryOrder.delivery === 'UkrPoshta'} ? 'УкрПошта' : 'Доставка за адресою'}</p>
+        <p>Доставку замовлено від: ${deliveryType}</p>
         <p>У населений пункт:  ${fullData?.deliveryOrder.cityDelivery} ${
           fullData?.deliveryOrder.departmentDelivery
         }</p>
-        <p>Метод оплати:  ${
-          fullData?.selectedPaymentOption === "Payment by bank card"
-            ? "Оплата карткою Visa|Mastercard, Google Pay, Apple Pay"
-            : "Оплата при отримані"
-        }</p>
+        <p>Метод оплати:  ${paymentType}</p>
         <p>Ми вже працюємо над пакуванням замовлення.</p>
         <p>З вдячніст'ю, служба підтримки  Quillis Service</p>
         <br/>
