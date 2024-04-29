@@ -74,7 +74,7 @@ const createOrder = async (req, res, next) => {
         customerEmails: [],
         basketOrder: [...basketOrder],
       },
-      redirectUrl: "https://quillis.vercel.app/user/orders?page=1&perPage=5",
+      redirectUrl: "https://quillis.shop/user/orders?page=1&perPage=5",
       webHookUrl:
         "https://store-of-stylish-clothes-backend.vercel.app/api/payment",
       validity: 3600,

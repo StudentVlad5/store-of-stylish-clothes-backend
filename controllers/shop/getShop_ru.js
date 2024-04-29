@@ -2,7 +2,7 @@ const { ValidationError } = require("../../helpers");
 const { Catalog, Shop_ru, Shop_ua } = require("../../models");
 
 const getShop_ru = async (req, res, next) => {
-  const usd = 38;
+  const usd = 39;
   const euro = 42;
   try {
 
@@ -33,8 +33,10 @@ const getShop_ru = async (req, res, next) => {
     Shop_ru.create(it);
     }})
     })
+    
     // з каталогу
-// const catalog = await Catalog.find();
+
+// const array = await Catalog.find();
 // array.map(it => {
 // let item = {};
 // item.uuid = it.uuid;

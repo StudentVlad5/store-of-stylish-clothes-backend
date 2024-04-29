@@ -2,7 +2,7 @@ const { ValidationError } = require("../../helpers");
 const { Catalog, Shop_de, Shop_ua } = require("../../models");
 
 const getShop_de = async (req, res, next) => {
-  const usd = 38;
+  const usd = 39;
   const euro = 42;
   try {
 
