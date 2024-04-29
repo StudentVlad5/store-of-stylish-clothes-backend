@@ -5,7 +5,7 @@ const get_ua = async (req, res, next) => {
   const today = new Date().getDate();
   try {
     const categoryFilters = await Category_ua.find();
-    // if( categoryFilters && (today - new Date(categoryFilters[0]?.createdAt).getDate() > 7)) {
+    if( categoryFilters && (today - new Date(categoryFilters[0]?.createdAt).getDate() > 7)) {
     const catalog = await Catalog.find();
     let filterParams = {
       level_1: [],
@@ -52,7 +52,7 @@ const get_ua = async (req, res, next) => {
     });
     const category = await Category_ua.create(filterParams);
     res.status(200).json(category);
-    // }
+    }
     res.status(200).json(categoryFilters);
   } catch (err) {
     throw new ValidationError(err.message);
