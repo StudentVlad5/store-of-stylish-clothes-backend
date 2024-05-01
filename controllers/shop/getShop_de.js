@@ -1,13 +1,13 @@
 const { ValidationError } = require("../../helpers");
-const { Catalog, Shop_de, Shop_ua } = require("../../models");
+const { Catalog, Test_de, Test_ua } = require("../../models");
 
 const getShop_de = async (req, res, next) => {
   const usd = 39;
   const euro = 42;
   try {
 
-    const shop_de = await Shop_de.find();
-    const shop_ua = await Shop_ua.find()
+    const shop_de = await Test_de.find();
+    const shop_ua = await Test_ua.find()
 
     let array_de = [...shop_de];
     let array_ua = [...shop_ua];
@@ -29,8 +29,8 @@ const getShop_de = async (req, res, next) => {
     it.status = key.status;
     it.rate = key.rate;
 
-    Shop_de.deleteOne({uuid: it.uuid});
-    Shop_de.create(it);
+    Test_de.deleteOne({uuid: it.uuid});
+    Test_de.create(it);
     }})
     })
 
@@ -66,9 +66,9 @@ const getShop_de = async (req, res, next) => {
     //     2
     //   );
     //   item.rate = (Math.random() * 11).toFixed(1);
-    //   Shop_de.create(item);
+    //   Test_de.create(item);
     // });
-    const shop = await Shop_de.find().limit(12);
+    const shop = await Test_de.find().limit(12);
     res.status(200).json(shop);
   } catch (err) {
     throw new ValidationError(err.message);

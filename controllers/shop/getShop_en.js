@@ -1,12 +1,12 @@
 const { ValidationError } = require("../../helpers");
-const { Catalog, Shop_en, Shop_ua } = require("../../models");
+const { Catalog, Test_en, Test_ua } = require("../../models");
 
 const getShop_en = async (req, res, next) => {
   const usd = 39;
   const euro = 42;
   try {
-    const shop_en = await Shop_en.find();
-    const shop_ua = await Shop_ua.find()
+    const shop_en = await Test_en.find();
+    const shop_ua = await Test_ua.find()
 
     let array_en = [...shop_en];
     let array_ua = [...shop_ua];
@@ -28,8 +28,8 @@ const getShop_en = async (req, res, next) => {
     it.status = key.status;
     it.rate = key.rate;
 
-    Shop_en.deleteOne({uuid: it.uuid});
-    Shop_en.create(it);
+    Test_en.deleteOne({uuid: it.uuid});
+    Test_en.create(it);
     }})
     })
   
@@ -64,9 +64,9 @@ const getShop_en = async (req, res, next) => {
 // item.discount_usd = +(item.oldPrice_usd - item.newPrice_usd).toFixed(2);
 // item.discount_euro = +(item.oldPrice_euro - item.newPrice_euro).toFixed(2);
 // item.rate= (Math.random() * 11).toFixed(1);
-// Shop_en.create(item)
+// Test_en.create(item)
 //   })
-const shop = await Shop_en.find().limit(12)
+const shop = await Test_en.find().limit(12)
     res.status(200).json(shop);
   } catch (err) {
     throw new ValidationError(err.message);

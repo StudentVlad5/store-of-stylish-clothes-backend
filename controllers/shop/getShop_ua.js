@@ -1,5 +1,5 @@
 const { ValidationError } = require("../../helpers");
-const { Catalog, Shop_ua } = require("../../models");
+const { Catalog, Test_ua } = require("../../models");
 
 const getShop_ua = async (req, res, next) => {
   const usd = 39;
@@ -29,8 +29,10 @@ const getShop_ua = async (req, res, next) => {
         item.newPrice_ua = (it.price * 1.15).toFixed(2);
         item.oldPrice_ua = (it.price * 1.26).toFixed(2);
       } else {
-        item.newPrice_ua = (it.price * 1.1).toFixed(2);
-        item.oldPrice_ua = (it.price * 1.25).toFixed(2);
+        item.newPrice_ua = (it.price * 1.2).toFixed(2);
+        item.oldPrice_ua = (it.price * 1.35).toFixed(2);
+        // item.newPrice_ua = (it.price * 1.1).toFixed(2);
+        // item.oldPrice_ua = (it.price * 1.25).toFixed(2);
       }
       item.price_usd = (it.price / usd).toFixed(2);
       item.newPrice_usd = (item.newPrice_ua / usd).toFixed(2);
@@ -53,9 +55,9 @@ const getShop_ua = async (req, res, next) => {
         2
       );
       item.rate = (Math.random() * (10 - 6) + 6).toFixed(1);
-      Shop_ua.create(item);
+      Test_ua.create(item);
     });
-    const shop = await Shop_ua.find().limit(12);
+    const shop = await Test_ua.find().limit(12);
     res.status(200).json(shop);
   } catch (err) {
     throw new ValidationError(err.message);

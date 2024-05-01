@@ -40,21 +40,21 @@ if(currency === "usd"){
       if(sort === "minMaxPrice"){
       catalog = await Shop_ua.find({description:{ $in: regsearch }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
       else if(sort === "maxMinPrice"){
       catalog = await Shop_ua.find({description:{ $in: regsearch }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);}
       else {
         catalog = await Shop_ua.find({description:{ $in: regsearch }})
         .sort({
-          price_usd: 1,
+          newPrice_usd: 1,
         })
         .limit(limit)
         .skip(skip);}
@@ -74,27 +74,27 @@ if(currency === "usd"){
       console.log("нема фільтрів");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
       else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);}
       else {
-        catalog = await Shop_ua.find({price_usd: { $gte: minPrice, $lte: maxPrice }})
+        catalog = await Shop_ua.find({newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
         .sort({
-          price_usd: 1,
+          newPrice_usd: 1,
         })
         .limit(limit)
         .skip(skip);}
-      let total = await Shop_ua.find({price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
     
@@ -108,29 +108,29 @@ if(currency === "usd"){
       console.log("чоловіче / жіноче / дитяче ");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
       else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
   
@@ -144,29 +144,29 @@ if(currency === "usd"){
         console.log("фільтр по одежі /взутті/ ");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({category : category, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по продукція
@@ -179,29 +179,29 @@ if(currency === "usd"){
         console.log("фільтр по продукція ");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по розмірам
@@ -214,29 +214,29 @@ if(currency === "usd"){
         console.log("фільтр по розмірам");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else  if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
   
@@ -252,29 +252,29 @@ if(currency === "usd"){
         console.log(" по одежі /взуття/ + чоловік / жінка / дитяче ");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({category : category, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({category : category, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по одежі /взуття/ 
@@ -289,29 +289,29 @@ if(currency === "usd"){
         console.log(" по одежі /взуття/ + product");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр чоловік/жінка  
@@ -326,29 +326,29 @@ if(currency === "usd"){
         console.log(" пофільтр чоловік/жінка   + product");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, man_women : man_woman, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, man_women : man_woman, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
   
@@ -364,29 +364,29 @@ if(currency === "usd"){
         console.log(" по одежі /взуття/ + sizes");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по category 
@@ -401,29 +401,29 @@ if(currency === "usd"){
         console.log(" по category + sizes");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по category 
@@ -438,29 +438,29 @@ if(currency === "usd"){
         console.log(" по category + product");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, category : category, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, category : category, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
   
@@ -476,29 +476,29 @@ if(currency === "usd"){
         console.log(" по sizes + product");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по одежі /взуття/ 
@@ -514,29 +514,29 @@ if(currency === "usd"){
         console.log(" ппо одежі /взуття/  + product + чоловік / жінка / дитяче");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
   
@@ -553,29 +553,29 @@ if(currency === "usd"){
         console.log(" ппо одежі /взуття/  + sizes + чоловік / жінка / дитяче");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else  if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // product 
@@ -591,29 +591,29 @@ if(currency === "usd"){
         console.log(" product  + sizes + чоловік / жінка / дитяче");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
       else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // product 
@@ -629,29 +629,29 @@ if(currency === "usd"){
         console.log(" product  + sizes + category");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
         // фільтр по одежі /взуття/ 
@@ -668,39 +668,39 @@ if(currency === "usd"){
         console.log(" +4 фільтри");
       let catalog = {}
       if(sort === "minMaxPrice"){
-      catalog = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);
     }
     else if(sort === "maxMinPrice"){
-      catalog = await Shop_ua.find({man_women : man_woman, category : category, product: product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({man_women : man_woman, category : category, product: product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: -1,
+        newPrice_usd: -1,
       })
       .limit(limit)
       .skip(skip);
     }
     else {
-      catalog = await Shop_ua.find({man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_usd: 1,
+        newPrice_usd: 1,
       })
       .limit(limit)
       .skip(skip);}
-      let total = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+      let total = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
       return res.status(200).json({ catalog, total });
     }
   
-    catalog = await Shop_ua.find({price_usd: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({newPrice_usd: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_usd: 1,
+      newPrice_usd: 1,
     })
     .limit(limit)
     .skip(skip);
-    total = await Shop_ua.find({price_usd: { $gte: minPrice, $lte: maxPrice }}).count();
+    total = await Shop_ua.find({newPrice_usd: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -718,21 +718,21 @@ else if (currency === "euro"){
   if(sort === "minMaxPrice"){
   catalog = await Shop_ua.find({description:{ $in: regsearch }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
   else if(sort === "maxMinPrice"){
   catalog = await Shop_ua.find({description:{ $in: regsearch }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);}
   else {
     catalog = await Shop_ua.find({description:{ $in: regsearch }})
     .sort({
-      price_euro: 1,
+      newPrice_euro: 1,
     })
     .limit(limit)
     .skip(skip);}
@@ -752,27 +752,27 @@ else if (currency === "euro"){
   console.log("нема фільтрів");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
   else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);}
   else {
-    catalog = await Shop_ua.find({price_euro: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_euro: 1,
+      newPrice_euro: 1,
     })
     .limit(limit)
     .skip(skip);}
-  let total = await Shop_ua.find({price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -786,29 +786,29 @@ else if (currency === "euro"){
   console.log("чоловіче / жіноче / дитяче ");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
   else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -822,29 +822,29 @@ else {
     console.log("фільтр по одежі /взутті/ ");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({category : category, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по продукція
@@ -857,29 +857,29 @@ else {
     console.log("фільтр по продукція ");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по розмірам
@@ -892,29 +892,29 @@ else {
     console.log("фільтр по розмірам");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else  if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -930,29 +930,29 @@ else {
     console.log(" по одежі /взуття/ + чоловік / жінка / дитяче ");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({category : category, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({category : category, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по одежі /взуття/ 
@@ -967,29 +967,29 @@ else {
     console.log(" по одежі /взуття/ + product");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр чоловік/жінка  
@@ -1004,29 +1004,29 @@ else {
     console.log(" пофільтр чоловік/жінка   + product");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, man_women : man_woman, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, man_women : man_woman, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -1042,29 +1042,29 @@ else {
     console.log(" по одежі /взуття/ + sizes");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по category 
@@ -1079,29 +1079,29 @@ else {
     console.log(" по category + sizes");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по category 
@@ -1116,29 +1116,29 @@ else {
     console.log(" по category + product");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, category : category, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, category : category, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -1154,29 +1154,29 @@ else {
     console.log(" по sizes + product");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по одежі /взуття/ 
@@ -1192,29 +1192,29 @@ else {
     console.log(" ппо одежі /взуття/  + product + чоловік / жінка / дитяче");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
@@ -1231,29 +1231,29 @@ else {
     console.log(" ппо одежі /взуття/  + sizes + чоловік / жінка / дитяче");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else  if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // product 
@@ -1269,29 +1269,29 @@ else {
     console.log(" product  + sizes + чоловік / жінка / дитяче");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
   else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // product 
@@ -1307,29 +1307,29 @@ else {
     console.log(" product  + sizes + category");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
     // фільтр по одежі /взуття/ 
@@ -1346,39 +1346,39 @@ else {
     console.log(" +4 фільтри");
   let catalog = {}
   if(sort === "minMaxPrice"){
-  catalog = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);
 }
 else if(sort === "maxMinPrice"){
-  catalog = await Shop_ua.find({man_women : man_woman, category : category, product: product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({man_women : man_woman, category : category, product: product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: -1,
+    newPrice_euro: -1,
   })
   .limit(limit)
   .skip(skip);
 }
 else {
-  catalog = await Shop_ua.find({man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_euro: 1,
+    newPrice_euro: 1,
   })
   .limit(limit)
   .skip(skip);}
-  let total = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+  let total = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
   return res.status(200).json({ catalog, total });
 }
 
-catalog = await Shop_ua.find({price_euro: { $gte: minPrice, $lte: maxPrice }})
+catalog = await Shop_ua.find({newPrice_euro: { $gte: minPrice, $lte: maxPrice }})
 .sort({
-  price_euro: 1,
+  newPrice_euro: 1,
 })
 .limit(limit)
 .skip(skip);
-total = await Shop_ua.find({price_euro: { $gte: minPrice, $lte: maxPrice }}).count();
+total = await Shop_ua.find({newPrice_euro: { $gte: minPrice, $lte: maxPrice }}).count();
 return res.status(200).json({ catalog, total });
 }
 // FINISH EURO
@@ -1394,21 +1394,21 @@ else {
     if(sort === "minMaxPrice"){
     catalog = await Shop_ua.find({description:{ $in: regsearch }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
     else if(sort === "maxMinPrice"){
     catalog = await Shop_ua.find({description:{ $in: regsearch }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);}
     else {
       catalog = await Shop_ua.find({description:{ $in: regsearch }})
       .sort({
-        price_ua: 1,
+        newPrice_ua: 1,
       })
       .limit(limit)
       .skip(skip);}
@@ -1428,27 +1428,27 @@ else {
     console.log("нема фільтрів");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
     else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);}
     else {
-      catalog = await Shop_ua.find({price_ua: { $gte: minPrice, $lte: maxPrice }})
+      catalog = await Shop_ua.find({newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
       .sort({
-        price_ua: 1,
+        newPrice_ua: 1,
       })
       .limit(limit)
       .skip(skip);}
-    let total = await Shop_ua.find({price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
   
@@ -1462,29 +1462,29 @@ else {
     console.log("чоловіче / жіноче / дитяче ");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
     else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
 
@@ -1498,29 +1498,29 @@ else {
       console.log("фільтр по одежі /взутті/ ");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({category : category, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по продукція
@@ -1533,29 +1533,29 @@ else {
       console.log("фільтр по продукція ");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по розмірам
@@ -1568,29 +1568,29 @@ else {
       console.log("фільтр по розмірам");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else  if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
 
@@ -1606,29 +1606,29 @@ else {
       console.log(" по одежі /взуття/ + чоловік / жінка / дитяче ");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({category : category, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({category : category, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по одежі /взуття/ 
@@ -1643,29 +1643,29 @@ else {
       console.log(" по одежі /взуття/ + product");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр чоловік/жінка  
@@ -1680,29 +1680,29 @@ else {
       console.log(" пофільтр чоловік/жінка   + product");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, man_women : man_woman, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, man_women : man_woman, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
 
@@ -1718,29 +1718,29 @@ else {
       console.log(" по одежі /взуття/ + sizes");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по category 
@@ -1755,29 +1755,29 @@ else {
       console.log(" по category + sizes");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({sizes:{ $in: reg }, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по category 
@@ -1792,29 +1792,29 @@ else {
       console.log(" по category + product");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, category : category, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, category : category, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
 
@@ -1830,29 +1830,29 @@ else {
       console.log(" по sizes + product");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по одежі /взуття/ 
@@ -1868,29 +1868,29 @@ else {
       console.log(" ппо одежі /взуття/  + product + чоловік / жінка / дитяче");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({category : category, man_women : man_woman, product: product, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({category : category, man_women : man_woman, product: product, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
 
@@ -1907,29 +1907,29 @@ else {
       console.log(" ппо одежі /взуття/  + sizes + чоловік / жінка / дитяче");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else  if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({category : category, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // product 
@@ -1945,29 +1945,29 @@ else {
       console.log(" product  + sizes + чоловік / жінка / дитяче");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
     else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, man_women : man_woman, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // product 
@@ -1983,29 +1983,29 @@ else {
       console.log(" product  + sizes + category");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({product : product, category : category, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
       // фільтр по одежі /взуття/ 
@@ -2022,39 +2022,39 @@ else {
       console.log(" +4 фільтри");
     let catalog = {}
     if(sort === "minMaxPrice"){
-    catalog = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);
   }
   else if(sort === "maxMinPrice"){
-    catalog = await Shop_ua.find({man_women : man_woman, category : category, product: product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({man_women : man_woman, category : category, product: product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: -1,
+      newPrice_ua: -1,
     })
     .limit(limit)
     .skip(skip);
   }
   else {
-    catalog = await Shop_ua.find({man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }})
+    catalog = await Shop_ua.find({man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
     .sort({
-      price_ua: 1,
+      newPrice_ua: 1,
     })
     .limit(limit)
     .skip(skip);}
-    let total = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+    let total = await Shop_ua.find({ man_women : man_woman, category : category,product: product, sizes:{ $in: reg }, newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
     return res.status(200).json({ catalog, total });
   }
 
-  catalog = await Shop_ua.find({price_ua: { $gte: minPrice, $lte: maxPrice }})
+  catalog = await Shop_ua.find({newPrice_ua: { $gte: minPrice, $lte: maxPrice }})
   .sort({
-    price_ua: 1,
+    newPrice_ua: 1,
   })
   .limit(limit)
   .skip(skip);
-  total = await Shop_ua.find({price_ua: { $gte: minPrice, $lte: maxPrice }}).count();
+  total = await Shop_ua.find({newPrice_ua: { $gte: minPrice, $lte: maxPrice }}).count();
 return res.status(200).json({ catalog, total });
 }
 // FINISH UAH
