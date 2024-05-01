@@ -85,17 +85,17 @@ const createOrder = async (req, res, next) => {
     };
 
     const transporter = nodemailer.createTransport({
-      host: "smtp.ukr.net",
+      service: "gmail",
+      host: "smtp.gmail.com",
       port: 465,
       secure: true,
       auth: {
         user: process.env.EMAIL_SEND,
         pass: process.env.EMAIL_PASSWORD,
-        login: "Quillis",
       },
     });
 
-    const from = "Quillis Support  <vlad_np@ukr.net>";
+    const from = "Quillis Support  <quillis.info@gmail.com>";
     const to = "for_test_mern@ukr.net, quillis.info@gmail.com";
     const toUser = `${fullData?.email}`;
     const deliveryType = fullData?.deliveryOrder.delivery === 'NovaPoshta' ? 'Нова Пошта' : fullData?.deliveryOrder.delivery === 'UkrPoshta' ? 'УкрПошта' : 'Доставка за адресою';
