@@ -32,7 +32,7 @@ app.use(express.json());
 
 app.use("/uploads", express.static(`${__dirname}/images`));
 app.use("/uploads", express.static(`${__dirname}/images/avatars`));
-
+app.use(require('prerender-node').set('prerenderToken', 'WkxjEbUyaKwDfWfwMONs'));
 app.use("/api/auth", routerAuth);
 app.use("/api/cities", routerSities);
 app.use("/api/departments", routerDepartments);

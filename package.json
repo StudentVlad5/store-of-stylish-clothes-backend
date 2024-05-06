@@ -41,6 +41,7 @@
     "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.4",
     "nodemailer-direct-transport": "^3.3.2",
+    "prerender-node": "^3.8.0",
     "request": "^2.88.2",
     "sharp": "^0.32.0"
   },
