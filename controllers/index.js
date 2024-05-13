@@ -9,6 +9,7 @@ const care = require("./care");
 const order = require("./order");
 const basket = require("./basket");
 const message = require("./message");
+const ready_styles = require("./ready_styles");
 
 module.exports = {
   auth,
@@ -20,5 +21,6 @@ module.exports = {
   basket,
   category,
   shop,
-  message
+  message,
+  ready_styles
 };

@@ -11,9 +11,14 @@ const {
   routerMessage,
   // routerAdmin,
   routerCatalog,
-  // routerSities,
+  routerStyles,
+  routerSities,
+  routerDepartments,
   // routerCare,
-  // routerOrder,
+  routerCategory,
+  routerShop,
+  routerOrder,
+  routerBasket
 } = require("./routes/api");
 
 const app = express();
@@ -39,10 +44,11 @@ app.use("/api/departments", routerDepartments);
 app.use("/api/catalog", routerCatalog);
 app.use("/api/shop", routerShop);
 app.use("/api/category", routerCategory);
-app.use("/api/care", routerCare);
+// app.use("/api/care", routerCare);
 app.use("/api/order", routerOrder);
 app.use("/api/basket", routerBasket);
 app.use("/api/message", routerMessage);
+app.use("/api/styles", routerStyles);
 
 app.use((req, res) => {
   console.log("!!!!! APP (req, res) !!!!!!");

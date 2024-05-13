@@ -43,6 +43,12 @@ router.post(
   ctrlWrapper(ctrl.getFavorites_ua)
 );
 router.post(
+  "/shop/:id",
+  ctrlWrapper(authMiddleware),
+  validateId,
+  ctrlWrapper(ctrl.getFavorites)
+);
+router.post(
   "/shop/ru/:id",
   ctrlWrapper(authMiddleware),
   validateId,
